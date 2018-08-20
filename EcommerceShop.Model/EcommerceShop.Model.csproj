@@ -53,6 +53,7 @@
     <Compile Include="Abstract\IAuditable.cs" />
     <Compile Include="Abstract\ISEOable.cs" />
     <Compile Include="Abstract\ISwitchable.cs" />
+    <Compile Include="Models\Error.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\MenuGroup.cs" />
     <Compile Include="Models\Order.cs" />
