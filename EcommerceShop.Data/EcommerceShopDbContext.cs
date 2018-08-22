@@ -1,4 +1,5 @@
 ﻿using EcommerceShop.Model.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace EcommerceShop.Data
 {
-    public class EcommerceShopDbContext: DbContext
+    public class EcommerceShopDbContext: IdentityDbContext<ApplicationUser>
     {
         public EcommerceShopDbContext(): base("EcommerceShopConnection") {
             this.Configuration.LazyLoadingEnabled = false;
@@ -30,7 +31,12 @@ namespace EcommerceShop.Data
         public DbSet<Error> Errors { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder) {
+            modelBuilder.Entity<IdentityUserRole>().HasKey(i => new { i.UserId, i.RoleId });
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
+        }
 
+        public static EcommerceShopDbContext Create() {
+            return new EcommerceShopDbContext();
         }
     }
 }
